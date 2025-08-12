@@ -21,10 +21,6 @@
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0"
-	},
-	"dependencies": {
-		"@wordpress/icons": "^10.4.0",
-		"classnames": "^2.5.1"
+		"@wordpress/scripts": "^30.0.0"
 	}
 }
