@@ -17,11 +17,13 @@
     "categories": { "type": "array", "items": { "type": "number" }, "default": [] },
     "showExcerpt": { "type": "boolean", "default": true },
     "postType": { "type": "string", "default": "post" },
-    "order": { "type": "string", "default": "desc" },
-    "orderBy": { "type": "string", "default": "date" }
+	"order": { "type": "string", "default": "desc" },
+	"orderBy": { "type": "string", "default": "date" },
+	"maxWidth": { "type": "number", "default": 1200 }
     },
 	"textdomain": "em-block-carousel",
-    "editorScript": "file:./index.js",
-    "style": "file:./style.css",
-    "viewScript": "file:./view.js"
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
 }
