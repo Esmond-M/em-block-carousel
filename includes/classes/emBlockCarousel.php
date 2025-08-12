@@ -107,7 +107,7 @@ class emBlockCarousel
     public function em_block_carousel_init()
     {
         register_block_type(
-            WP_PLUGIN_DIR . '/em-block-carousel/build',
+            dirname(__DIR__, 2) . '/build',
             [
                 'render_callback' => [$this, 'em_block_carousel_content']
             ]
