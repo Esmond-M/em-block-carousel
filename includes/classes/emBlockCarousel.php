@@ -106,6 +106,8 @@ class emBlockCarousel
      */
     public function em_block_carousel_init()
     {
+
+      error_log('em_block_carousel_init ran');
         register_block_type(
             dirname(__DIR__, 2) . '/build',
             [
