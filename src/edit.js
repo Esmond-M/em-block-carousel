@@ -8,7 +8,7 @@ const PostTypeOptions = [
 ];
 
 export default function Edit( { attributes, setAttributes } ) {
-  const { sectionTitle, postsToShow, categories, showExcerpt, postType, order, orderBy } = attributes;
+  const { sectionTitle, postsToShow, categories, showExcerpt, postType, order, orderBy, maxWidth } = attributes;
 
   const { terms, isResolving } = useSelect( ( select ) => {
     const core = select( 'core' );
@@ -20,7 +20,10 @@ export default function Edit( { attributes, setAttributes } ) {
     };
   }, [] );
 
-  const blockProps = useBlockProps({ className: 'em-slick-carousel is-editor' });
+  const blockProps = useBlockProps({
+    className: 'em-slick-carousel is-editor',
+    style: { '--em-carousel-max-width': maxWidth ? `${maxWidth}px` : undefined }
+  });
 
   React.useEffect(() => {
     // Only run in editor preview
@@ -78,6 +81,14 @@ export default function Edit( { attributes, setAttributes } ) {
               { label: 'ASC', value: 'asc' }
             ]}
             onChange={ (v) => setAttributes({ order: v }) }
+          />
+          <NumberControl
+            label={ __('Max Width (px)', 'em') }
+            value={ maxWidth }
+            min={ 400 }
+            max={ 2400 }
+            onChange={ (v) => setAttributes({ maxWidth: Number(v) }) }
+            help={ __('Set the maximum width of the carousel container.', 'em') }
           />
           <div style={{ marginTop: '8px' }}>
             <label className="components-base-control__label">{ __('Categories', 'em') }</label>

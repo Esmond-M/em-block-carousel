@@ -102,7 +102,12 @@ class emBlockCarousel
       ob_start(); ?>
 
       <?php if ( $q->have_posts() ) : ?>
-      <section class="em-slick-carousel wp-block-em-latest-posts-carousel" role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr( $atts['sectionTitle'] ); ?>">
+      <section class="em-slick-carousel wp-block-em-latest-posts-carousel"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="<?php echo esc_attr( $atts['sectionTitle'] ); ?>"
+  style="<?php echo isset($atts['maxWidth']) ? 'max-width:' . esc_attr($atts['maxWidth']) . 'px;' : ''; ?>"
+      >
         <div class="carousel__header">
           <h2 class="carousel__title"><?php echo esc_html( $atts['sectionTitle'] ); ?></h2>
         </div>

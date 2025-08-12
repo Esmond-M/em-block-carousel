@@ -12,6 +12,12 @@
 // ===================
 // Carousel
 // ===================
+
+.em-slick-carousel {
+  max-width: var(--em-carousel-max-width, 1200px);
+  margin: auto;
+}
+
 .carousel {
   position: relative;
   padding: 1rem 0 2rem;
