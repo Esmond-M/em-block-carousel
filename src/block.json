@@ -23,6 +23,5 @@
 	"textdomain": "em-block-carousel",
     "editorScript": "file:./index.js",
     "style": "file:./style.css",
-    "viewScript": "file:./view.js",
-    "render": "file:./render.php"
+    "viewScript": "file:./view.js"
 }
