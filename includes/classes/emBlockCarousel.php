@@ -19,11 +19,48 @@ class emBlockCarousel
     /**
      * Constructor: sets up hooks.
      */
-    public function __construct()
-    {
-      //  add_action('init', [$this, '']);
-          add_action('init', [$this, 'em_block_carousel_init']);
+  public function __construct()
+  {
+    add_action('init', [$this, 'em_block_carousel_init']);
+    add_action('enqueue_block_assets', [$this, 'enqueue_assets']);
+  }
+
+  public function enqueue_assets()
+  {
+    $plugin_url = plugin_dir_url(dirname(__DIR__, 2) . '/em-block-carousel.php');
+    // Slick CSS
+    wp_enqueue_style(
+      'em-block-carousel-slick',
+      $plugin_url . 'assets/css/slick.css',
+      [],
+      '1.8.1'
+    );
+    // Carousel block custom CSS (optional, if you have one)
+    if (file_exists(dirname(__DIR__, 2) . '/assets/css/carousel-custom.css')) {
+      wp_enqueue_style(
+        'em-block-carousel-custom',
+        $plugin_url . 'assets/css/carousel-custom.css',
+        ['em-block-carousel-slick'],
+        null
+      );
     }
+    // Slick JS
+    wp_enqueue_script(
+      'em-block-carousel-slick',
+      $plugin_url . 'assets/js/slick.min.js',
+      ['jquery'],
+      '1.8.1',
+      true
+    );
+    // Custom initialization JS
+    wp_enqueue_script(
+      'em-block-carousel-init',
+      $plugin_url . 'assets/js/carousel-init.js',
+      ['jquery', 'em-block-carousel-slick'],
+      null,
+      true
+    );
+  }
 
     /**
      * Server-side render for Latest Posts Carousel
@@ -60,19 +97,15 @@ class emBlockCarousel
       ob_start(); ?>
 
       <?php if ( $q->have_posts() ) : ?>
-      <section class="carousel wp-block-em-latest-posts-carousel" role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr( $atts['sectionTitle'] ); ?>">
+      <section class="em-slick-carousel wp-block-em-latest-posts-carousel" role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr( $atts['sectionTitle'] ); ?>">
         <div class="carousel__header">
           <h2 class="carousel__title"><?php echo esc_html( $atts['sectionTitle'] ); ?></h2>
-          <div class="carousel__controls" aria-controls="<?php echo esc_attr( $block->context['postId'] ?? 'posts-track' ); ?>">
-            <button class="carousel__btn" data-carousel-prev aria-label="<?php esc_attr_e('Previous slide'); ?>">‹</button>
-            <button class="carousel__btn" data-carousel-next aria-label="<?php esc_attr_e('Next slide'); ?>">›</button>
-          </div>
         </div>
 
         <div class="carousel__viewport">
-          <ul class="carousel__track" tabindex="0">
+          <div class="em-slick-track">
             <?php while ( $q->have_posts() ) : $q->the_post(); ?>
-              <li class="carousel__slide">
+              <div class="em-slick-slide">
                 <article <?php post_class('card'); ?>>
                   <a class="card__media" href="<?php the_permalink(); ?>">
                     <?php if ( has_post_thumbnail() ) {
@@ -88,12 +121,11 @@ class emBlockCarousel
                     <a class="btn btn--primary" href="<?php the_permalink(); ?>"><?php esc_html_e('Read more'); ?></a>
                   </div>
                 </article>
-              </li>
+              </div>
             <?php endwhile; wp_reset_postdata(); ?>
-          </ul>
+          </div>
         </div>
-
-        <div class="carousel__dots" data-carousel-dots></div>
+        <div class="em-slick-dots"></div>
       </section>
       <?php endif; ?>
 

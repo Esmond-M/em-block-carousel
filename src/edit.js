@@ -20,7 +20,26 @@ export default function Edit( { attributes, setAttributes } ) {
     };
   }, [] );
 
-  const blockProps = useBlockProps({ className: 'carousel is-editor' });
+  const blockProps = useBlockProps({ className: 'em-slick-carousel is-editor' });
+
+  React.useEffect(() => {
+    // Only run in editor preview
+    if (window.jQuery && typeof window.jQuery.fn.slick === 'function') {
+      setTimeout(() => {
+        window.jQuery('.em-slick-carousel .em-slick-track').not('.slick-initialized').slick({
+          dots: true,
+          arrows: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          adaptiveHeight: true,
+          responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2 } },
+            { breakpoint: 600, settings: { slidesToShow: 1 } }
+          ]
+        });
+      }, 200);
+    }
+  });
 
   return (
     <>
