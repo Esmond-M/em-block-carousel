@@ -55,7 +55,7 @@ class emBlockCarousel
         $q_args['category__in'] = array_map( 'intval', (array) $atts['categories'] );
       }
 
-      $q = new WP_Query( $q_args );
+        $q = new \WP_Query( $q_args );
 
       ob_start(); ?>
 
@@ -98,7 +98,7 @@ class emBlockCarousel
       <?php endif; ?>
 
       <?php
-      echo ob_get_clean();
+      return ob_get_clean();
     }
      
     /**
