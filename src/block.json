@@ -6,20 +6,23 @@
 	"title": "EM Carousel",
 	"category": "widgets",
 
-	"description": "Show posts in carousel",
+    "description": "Scrollable, responsive carousel of recent posts.",
 	"example": {},
 	"supports": {
 		"html": false
 	},
 	"attributes": {
-        "align": {
-            "type": "string",
-			"enum": [ "large", "small" ]
-        }
+    "sectionTitle": { "type": "string", "default": "Latest Posts" },
+    "postsToShow": { "type": "number", "default": 9 },
+    "categories": { "type": "array", "items": { "type": "number" }, "default": [] },
+    "showExcerpt": { "type": "boolean", "default": true },
+    "postType": { "type": "string", "default": "post" },
+    "order": { "type": "string", "default": "desc" },
+    "orderBy": { "type": "string", "default": "date" }
     },
 	"textdomain": "em-block-carousel",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+    "editorScript": "file:./index.js",
+    "style": "file:./style.css",
+    "viewScript": "file:./view.js",
+    "render": "file:./render.php"
 }
