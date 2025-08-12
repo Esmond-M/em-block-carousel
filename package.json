@@ -1,0 +1,30 @@
+{
+	"name": "em-block-carousel",
+	"version": "0.1.0",
+	"description": "Show posts in carousel",
+	"author": "Esmond Mccain",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"files": [
+		"/build",
+		"/assets",
+		"em-block-carousel.php",
+		"/includes"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --webpack-copy-php"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.9.0"
+	},
+	"dependencies": {
+		"@wordpress/icons": "^10.4.0",
+		"classnames": "^2.5.1"
+	}
+}
