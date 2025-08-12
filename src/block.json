@@ -22,7 +22,8 @@
 	"maxWidth": { "type": "number", "default": 1200 }
     },
 	"textdomain": "em-block-carousel",
-    "editorScript": "file:./index.js",
-    "style": "file:./style.css",
-    "viewScript": "file:./view.js"
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
 }
