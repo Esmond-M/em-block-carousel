@@ -22,10 +22,10 @@ class emBlockCarousel
   public function __construct()
   {
     add_action('init', [$this, 'em_block_carousel_init']);
-    add_action('enqueue_block_assets', [$this, 'enqueue_assets']);
+    // Removed global enqueue_block_assets hook
   }
 
-  public function enqueue_assets()
+  private function enqueue_assets()
   {
     $plugin_url = plugin_dir_url(dirname(__DIR__, 2) . '/em-block-carousel.php');
     // Slick CSS
@@ -67,6 +67,11 @@ class emBlockCarousel
     */
     public function em_block_carousel_content($attributes)
     {
+      // Only enqueue assets when block is rendered on frontend
+      if (!is_admin()) {
+        $this->enqueue_assets();
+      }
+
       $atts = wp_parse_args(
         $attributes ?? [],
         [
@@ -106,7 +111,7 @@ class emBlockCarousel
           <div class="em-slick-track">
             <?php while ( $q->have_posts() ) : $q->the_post(); ?>
               <div class="em-slick-slide">
-                <article <?php post_class('card'); ?>>
+                <article <?php post_class('card'); ?> >
                   <a class="card__media" href="<?php the_permalink(); ?>">
                     <?php if ( has_post_thumbnail() ) {
                       the_post_thumbnail( 'large', [ 'loading' => 'lazy' ] );
