@@ -19,7 +19,6 @@ EM Block Carousel is a WordPress plugin that adds a custom Gutenberg block calle
 ## Installation
 
 1. [Download the latest version](https://github.com/Esmond-M/em-block-carousel/blob/main/em-block-carousel.zip)  
-	![Download Button](/docs/download-button.png "download button")
 2. In your WordPress admin, go to **Plugins > Add New** and click **Upload Plugin**.
 3. Select the `em-block-carousel.zip` file and upload it.
 4. After uploading, click **Activate** to enable the plugin.
