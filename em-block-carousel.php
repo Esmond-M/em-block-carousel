@@ -33,7 +33,5 @@ defined('ABSPATH') or die();
 // Autoload or require main class
 require_once plugin_dir_path(__FILE__) . 'includes/classes/emBlockCarousel.php';
 
-
-
 // Initialize plugin
 new emBlockCarousel();

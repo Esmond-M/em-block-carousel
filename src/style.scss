@@ -19,8 +19,13 @@
   margin: auto;
 }
 
+
 .is-editor .em-slick-slide {
   max-height: 494px;
+}
+
+.em-slick-slide {
+  margin: 0 10px;
 }
 
 .carousel {
@@ -33,6 +38,8 @@
   }
 
   &__title {
+    text-align: center;
+    width: 100%;    
     margin: 0;
     @include fluid-type(1.25rem, 1.75rem);
   }
