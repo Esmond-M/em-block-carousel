@@ -13,9 +13,14 @@
 // Carousel
 // ===================
 
+
 .em-slick-carousel {
   max-width: var(--em-carousel-max-width, 1200px);
   margin: auto;
+}
+
+.is-editor .em-slick-slide {
+  max-height: 494px;
 }
 
 .carousel {
