@@ -6,14 +6,14 @@
 
 ## Overview
 
-EM Block Carousel is a WordPress plugin that adds a custom Gutenberg block called **"EM Block Carousel"** to the block editor. Easily display your latest posts in a customizable carousel format powered by Slick slider.
+EM Block Carousel is a WordPress plugin that adds a custom Gutenberg block called **"EM Block Carousel"** to the block editor. Easily display your latest posts or any custom post type in a customizable carousel format powered by Slick slider.
 
 ## Features
 
 - **Gutenberg Block:** Adds "EM Block Carousel" to the Widgets section.
 - **Slick Slider:** Smooth, responsive carousel transitions.
-- **Flexible Display:** Show posts in a customizable carousel layout.
-- **Custom Post Types:** Extendable to support custom post types with simple code edits.
+- **Flexible Display:** Show posts or any custom post type in a customizable carousel layout.
+- **Custom Post Types:** Select which post type to display directly in the block settings. Supports built-in and custom post types registered in WordPress.
 - **Easy Integration:** Seamlessly fits into your WordPress site.
 
 ## Installation
@@ -27,11 +27,11 @@ EM Block Carousel is a WordPress plugin that adds a custom Gutenberg block calle
 
 1. In the WordPress block editor, search for **"EM Block Carousel"** in the Widgets section.
 2. Add the block to your page or post.
-3. Configure the block settings to choose post types, carousel options, and display settings.
+3. Configure the block settings to choose which post type to display (e.g., posts, pages, or any custom post type), carousel options, and display settings.
 
 ## Customization
 
-To add support for custom post types, edit the plugin code as needed. Refer to the documentation or [open an issue](https://github.com/Esmond-M/em-block-carousel/issues) for guidance.
+To display custom post types, simply select the desired post type from the block settings in the editor. No code changes are required if the post type is registered in WordPress. Refer to the documentation or [open an issue](https://github.com/Esmond-M/em-block-carousel/issues) for guidance.
 
 ## Support
 

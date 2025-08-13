@@ -7,6 +7,13 @@ import { PanelBody, RangeControl, ToggleControl, TextControl, SelectControl, Spi
 export default function Edit({ attributes, setAttributes }) {
   const { sectionTitle, postsToShow, categories, showExcerpt, postType, order, orderBy, maxWidth } = attributes;
 
+  // Fetch available post types for selection
+  const postTypes = useSelect((select) => {
+    const types = select('core').getPostTypes() || [];
+    // Only show public, viewable types
+    return types.filter(pt => pt.viewable && pt.slug !== 'attachment');
+  }, []);
+
   // Fetch posts from WP data store
   const { posts, isResolving } = useSelect((select) => {
     const core = select('core');
@@ -36,6 +43,13 @@ export default function Edit({ attributes, setAttributes }) {
     <>
       <InspectorControls>
         <PanelBody title={__('Content', 'em')} initialOpen>
+          <SelectControl
+            label={__('Post Type', 'em')}
+            value={postType}
+            options={postTypes.map(pt => ({ label: pt.labels.singular_name, value: pt.slug }))}
+            onChange={v => setAttributes({ postType: v })}
+            help={__('Choose which post type to display in the carousel.', 'em')}
+          />
           <TextControl
             label={__('Section title', 'em')}
             value={sectionTitle}
@@ -87,7 +101,7 @@ export default function Edit({ attributes, setAttributes }) {
           <h2 className="carousel__title">{sectionTitle || __('Latest Posts', 'em')}</h2>
         </div>
         <div className="carousel__viewport">
-          <div className="em-slick-track" style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
+          <div className="em-slick-track" style={{ display: 'flex', gap: '1rem' }}>
             {isResolving && <Spinner />}
             {!isResolving && posts.length === 0 && (
               <Notice status="warning" isDismissible={false}>{__('No posts found.', 'em')}</Notice>
