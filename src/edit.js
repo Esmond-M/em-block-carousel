@@ -104,7 +104,7 @@ export default function Edit({ attributes, setAttributes }) {
           <h2 className="carousel__title">{sectionTitle || __('Latest Posts', 'em')}</h2>
         </div>
         <div className="carousel__viewport">
-          <div className="em-slick-track">
+          <div className="em-slick-track" style={{ display: 'flex', gap: '1rem', overflowX: 'auto' }}>
             {isResolving && <Spinner />}
             {!isResolving && posts.length === 0 && (
               <Notice status="warning" isDismissible={false}>{__('No posts found.', 'em')}</Notice>
@@ -137,7 +137,25 @@ export default function Edit({ attributes, setAttributes }) {
             })}
           </div>
         </div>
-        <div className="em-slick-dots"></div>
+        <div className="em-slick-dots" style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '1rem' }}>
+          {Array.from({ length: Math.min(postsToShow, 6) }).map((_, i) => (
+            <button
+              key={i}
+              style={{
+                width: '0.6rem',
+                height: '0.6rem',
+                borderRadius: '50%',
+                border: '1px solid #e5e7eb',
+                background: i === 0 ? '#2563eb' : 'transparent',
+                cursor: 'pointer',
+                outline: 'none',
+                borderColor: i === 0 ? '#2563eb' : '#e5e7eb',
+              }}
+              tabIndex={-1}
+              aria-hidden="true"
+            />
+          ))}
+        </div>
       </section>
     </>
   );
