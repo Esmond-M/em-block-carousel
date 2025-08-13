@@ -21,8 +21,9 @@ class emBlockCarousel
      */
   public function __construct()
   {
+
     add_action('init', [$this, 'em_block_carousel_init']);
-    // Removed global enqueue_block_assets hook
+ 
   }
 
   private function enqueue_assets()
@@ -35,15 +36,6 @@ class emBlockCarousel
       [],
       '1.8.1'
     );
-    // Carousel block custom CSS (optional, if you have one)
-    if (file_exists(dirname(__DIR__, 2) . '/assets/css/carousel-custom.css')) {
-      wp_enqueue_style(
-        'em-block-carousel-custom',
-        $plugin_url . 'assets/css/carousel-custom.css',
-        ['em-block-carousel-slick'],
-        null
-      );
-    }
     // Slick JS
     wp_enqueue_script(
       'em-block-carousel-slick',
@@ -52,14 +44,7 @@ class emBlockCarousel
       '1.8.1',
       true
     );
-    // Custom initialization JS
-    wp_enqueue_script(
-      'em-block-carousel-init',
-      $plugin_url . 'assets/js/carousel-init.js',
-      ['jquery', 'em-block-carousel-slick'],
-      null,
-      true
-    );
+
   }
 
     /**
@@ -120,7 +105,9 @@ class emBlockCarousel
                   <a class="card__media" href="<?php the_permalink(); ?>">
                     <?php if ( has_post_thumbnail() ) {
                       the_post_thumbnail( 'large', [ 'loading' => 'lazy' ] );
-                    } ?>
+                    } else { ?>
+                      <img src="https://placehold.co/600x400?text=No+Image" alt="No image" loading="lazy" />
+                    <?php } ?>
                   </a>
                   <div class="card__body">
                     <h3 class="card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
@@ -149,7 +136,6 @@ class emBlockCarousel
     public function em_block_carousel_init()
     {
 
-      error_log('em_block_carousel_init ran');
         register_block_type(
             dirname(__DIR__, 2) . '/build',
             [
